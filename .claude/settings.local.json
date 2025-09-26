@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx:*)",
+      "mcp__mcp_server_amap__maps_weather"
+    ],
+    "deny": [],
+    "ask": [],
+    "additionalDirectories": [
+      "D:\\claudecode"
+    ]
+  },
+  "outputStyle": "engineer-professional"
+}

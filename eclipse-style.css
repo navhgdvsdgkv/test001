@@ -1,0 +1,314 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+.eclipse-container {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    max-width: 900px;
+    width: 100%;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.eclipse-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.eclipse-header h1 {
+    font-size: 2.5em;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffd700, #ffeb3b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+}
+
+.eclipse-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.apple-btn {
+    background: linear-gradient(45deg, #007AFF, #0051D5);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.apple-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+}
+
+.apple-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 122, 255, 0.3);
+}
+
+.apple-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.apple-btn:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.eclipse-stage {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#eclipseCanvas {
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    background: radial-gradient(circle at center, #0a0a0a 0%, #000000 100%);
+    display: block;
+    margin: 0 auto;
+}
+
+.eclipse-info {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.phase-indicator {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 300;
+}
+
+.phase-indicator span:last-child {
+    color: #ffd700;
+    font-weight: 500;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ffd700, #ffeb3b);
+    width: 0%;
+    transition: width 0.3s ease;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.eclipse-settings {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.setting-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.setting-group label {
+    font-weight: 400;
+    white-space: nowrap;
+}
+
+.setting-group input[type="range"] {
+    width: 100px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #007AFF;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.setting-group input[type="range"]::-webkit-slider-thumb:hover {
+    background: #0051D5;
+    transform: scale(1.1);
+}
+
+.setting-group input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: #007AFF;
+    cursor: pointer;
+}
+
+.setting-group span {
+    font-weight: 500;
+    color: #007AFF;
+    min-width: 40px;
+}
+
+@media (max-width: 768px) {
+    .eclipse-container {
+        margin: 10px;
+        padding: 20px;
+    }
+    
+    .eclipse-header h1 {
+        font-size: 2em;
+    }
+    
+    .eclipse-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .apple-btn {
+        width: 200px;
+    }
+    
+    #eclipseCanvas {
+        width: 100%;
+        height: auto;
+    }
+    
+    .eclipse-settings {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .setting-group {
+        justify-content: space-between;
+    }
+}
+
+/* 动画效果 */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+    50% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.6); }
+    100% { box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+}
+
+.eclipse-container {
+    animation: fadeIn 0.8s ease-out;
+}
+
+.eclipse-container:hover {
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.apple-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.apple-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.apple-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+#eclipseCanvas {
+    transition: all 0.3s ease;
+}
+
+#eclipseCanvas:hover {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日蚀动画 - Apple Style</title>
+    <link rel="stylesheet" href="eclipse-style.css">
+</head>
+<body>
+    <div class="eclipse-container">
+        <div class="eclipse-header">
+            <h1>日蚀动画</h1>
+            <div class="eclipse-controls">
+                <button id="playBtn" class="apple-btn">开始</button>
+                <button id="pauseBtn" class="apple-btn">暂停</button>
+                <button id="resetBtn" class="apple-btn">重置</button>
+            </div>
+        </div>
+        
+        <div class="eclipse-stage">
+            <canvas id="eclipseCanvas" width="800" height="600"></canvas>
+            <div class="eclipse-info">
+                <div class="phase-indicator">
+                    <span>当前阶段：</span>
+                    <span id="currentPhase">初亏</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="eclipse-settings">
+            <div class="setting-group">
+                <label>动画速度</label>
+                <input type="range" id="speedSlider" min="0.1" max="3" step="0.1" value="1">
+                <span id="speedValue">1.0x</span>
+            </div>
+            <div class="setting-group">
+                <label>显示轨道</label>
+                <input type="checkbox" id="showOrbit" checked>
+            </div>
+            <div class="setting-group">
+                <label>显示光晕</label>
+                <input type="checkbox" id="showGlow" checked>
+            </div>
+        </div>
+    </div>
+    
+    <script src="eclipse-script.js"></script>
+</body>
+</html>
